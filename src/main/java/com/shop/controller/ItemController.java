@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/item")
 public class ItemController {
 
     private final ItemService itemService;
@@ -23,5 +22,10 @@ public class ItemController {
     public List<Item> searchItem(@RequestParam String search) {
         List<Item> items = itemService.searchItem(search);
         return items;
+    }
+
+    @GetMapping("/admin/item/new")
+    public String itemForm() {
+        return "item/itemForm";
     }
 }
