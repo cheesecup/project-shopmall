@@ -66,7 +66,7 @@ public class Item {
         if (this == o) return true;
         if (!(o instanceof Item)) return false;
         Item item = (Item) o;
-        return Objects.equals(id, item.id);
+        return id != null && id.equals(item.id);
     }
 
     @Override
