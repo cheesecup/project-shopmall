@@ -1,3 +1,11 @@
+/* Member 데이터 입력 */
+INSERT INTO member(name, email, password, address, role)
+VALUES ('Park', 'park@naver.com', 'park1234', '서울특별시 강남구 테헤란로', 'USER');
+
+INSERT INTO member(name, email, password, address, role)
+VALUES ('Kim', 'kim@gmail.com', 'kim1234', '전라남도 여수시', 'USER');
+
+/* Item 데이터 입력 */
 INSERT INTO item(item_name, price, stock_number, item_detail, item_sell_status, created_by, updated_by, reg_time, update_time)
 VALUES('나무 연필', 500, 200, '고급 나무 연필', 'SELL', 'chiz', 'chiz', '2021-05-30 23:53:46', '2021-05-30 23:53:46');
 
