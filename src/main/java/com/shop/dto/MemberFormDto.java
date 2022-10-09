@@ -1,5 +1,6 @@
 package com.shop.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
@@ -26,4 +27,14 @@ public class MemberFormDto {
     @NotEmpty(message = "주소를 입력해 주세요.")
     private String address;
 
+    public MemberFormDto() {
+    }
+
+    @Builder
+    public MemberFormDto(String name, String email, String password, String address) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+    }
 }

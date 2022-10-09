@@ -48,6 +48,12 @@ public class Member {
         return member;
     }
 
+    public static Member createAdminMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder) {
+        String encoderPassword = passwordEncoder.encode(memberFormDto.getPassword());
+        Member member = of(memberFormDto.getName(), memberFormDto.getEmail(), encoderPassword, memberFormDto.getAddress(), Role.ADMIN);
+        return member;
+    }
+
     public static Member of(String name, String email, String password, String address, Role role) {
         return new Member(name, email, password, address, role);
     }

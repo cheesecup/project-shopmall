@@ -41,7 +41,7 @@ class MemberServiceTest {
     @Test
     @DisplayName("중복 회원 가입 테스트")
     void saveDuplicateMemberTest() {
-        Member member = Member.of("치즈컵", "kim@gmail.com", "cheesecup1234", "전라남도 여수시 장군산길", Role.ADMIN);
+        Member member = Member.of("치즈컵", "user@test.com", "cheesecup1234", "전라남도 여수시 장군산길", Role.USER);
         Throwable e = assertThrows(IllegalStateException.class, () -> memberService.saveMember(member));
 
         assertThat(e.getMessage()).isEqualTo("이미 가입된 회원입니다.");
