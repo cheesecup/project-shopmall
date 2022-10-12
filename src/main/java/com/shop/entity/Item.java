@@ -6,13 +6,12 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
 @Getter
 @ToString
-public class Item {
+public class Item extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,14 +36,6 @@ public class Item {
     @Setter
     @Enumerated(EnumType.STRING)
     private ItemSellStatus itemSellStatus; // 상품 판매 상태
-
-    private String createdBy; // 생성자
-
-    private LocalDateTime regTime; // 등록일
-
-    private String updatedBy; // 수정자
-
-    private LocalDateTime updateTime; // 수정일
 
     protected Item() {
     }

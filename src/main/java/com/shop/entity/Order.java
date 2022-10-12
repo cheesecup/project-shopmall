@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @ToString
 @Table(name = "orders") // MySQL 예약어 `ORDER`와 클래스 이름이 겹쳐 테이블 이름을 orders 로 변경
-public class Order {
+public class Order extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,9 +33,6 @@ public class Order {
 
     private LocalDateTime orderDate;
 
-    private LocalDateTime regTime;
-
-    private LocalDateTime updateTime;
 
     protected Order() {
     }
