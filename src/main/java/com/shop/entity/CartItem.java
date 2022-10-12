@@ -9,7 +9,7 @@ import java.util.Objects;
 @Entity
 @Getter
 @ToString
-public class CartItem {
+public class CartItem extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
