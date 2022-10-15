@@ -1,6 +1,7 @@
 package com.shop.entity;
 
 import com.shop.constant.ItemSellStatus;
+import com.shop.dto.ItemFormDto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -50,6 +51,14 @@ public class Item extends BaseEntity {
 
     public static Item of(String itemName, int price, int stockNumber, String itemDetail, ItemSellStatus itemSellStatus) {
         return new Item(itemName, price, stockNumber, itemDetail, itemSellStatus);
+    }
+
+    public void updateItem(ItemFormDto itemFormDto) {
+        this.itemName = itemFormDto.getItemNm();
+        this.price = itemFormDto.getPrice();
+        this.itemDetail = itemFormDto.getItemDetail();
+        this.stockNumber = itemFormDto.getStockNumber();
+        this.itemSellStatus = itemFormDto.getItemSellStatus();
     }
 
     @Override
