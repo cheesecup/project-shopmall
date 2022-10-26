@@ -28,13 +28,6 @@ public class ItemController {
         this.itemService = itemService;
     }
 
-    @GetMapping("/search")
-    @ResponseBody
-    public List<Item> searchItem(@RequestParam String search) {
-        List<Item> items = itemService.searchItem(search);
-        return items;
-    }
-
     /* 상품 등록 폼으로 이동 */
     @GetMapping("/admin/item/new")
     public String itemForm(Model model) {
@@ -121,4 +114,5 @@ public class ItemController {
 
         return "item/itemMng";
     }
+
 }

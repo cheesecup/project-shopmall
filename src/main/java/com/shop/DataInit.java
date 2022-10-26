@@ -5,11 +5,9 @@ import com.shop.entity.Member;
 import com.shop.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
-@Component
 public class DataInit {
 
     private final PasswordEncoder passwordEncoder;
