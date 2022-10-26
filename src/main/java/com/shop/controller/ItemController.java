@@ -2,7 +2,6 @@ package com.shop.controller;
 
 import com.shop.dto.ItemFormDto;
 import com.shop.dto.ItemSearchDto;
-import com.shop.dto.MainItemDto;
 import com.shop.entity.Item;
 import com.shop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +26,6 @@ public class ItemController {
 
     public ItemController(@Autowired ItemService itemService) {
         this.itemService = itemService;
-    }
-
-    @GetMapping("/search")
-    @ResponseBody
-    public List<Item> searchItem(@RequestParam String search) {
-        List<Item> items = itemService.searchItem(search);
-        return items;
     }
 
     /* 상품 등록 폼으로 이동 */
@@ -123,16 +115,4 @@ public class ItemController {
         return "item/itemMng";
     }
 
-    /* 메인화면에서 보여줄 상품 리스트 조회 */
-    @GetMapping("/")
-    public String main(ItemSearchDto itemSearchDto, Optional<Integer> page, Model model) {
-        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
-        Page<MainItemDto> items = itemService.getMainItemPage(itemSearchDto, pageable);
-
-        model.addAttribute("items", items);
-        model.addAttribute("itemSearchDto", itemSearchDto);
-        model.addAttribute("maxPage", 5);
-
-        return "main";
-    }
 }

@@ -1,13 +1,11 @@
 package com.shop.service;
 
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.shop.dto.ItemFormDto;
 import com.shop.dto.ItemImgDto;
 import com.shop.dto.ItemSearchDto;
 import com.shop.dto.MainItemDto;
 import com.shop.entity.Item;
 import com.shop.entity.ItemImg;
-import com.shop.entity.QItem;
 import com.shop.repository.ItemImgRepository;
 import com.shop.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
-import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,34 +23,16 @@ import java.util.List;
 @Transactional
 public class ItemService {
 
-    @PersistenceContext
-    private final EntityManager em;
     private final ItemRepository itemRepository;
     private final ItemImgService itemImgService;
     private final ItemImgRepository itemImgRepository;
 
-    public ItemService(@Autowired EntityManager em,
-                       @Autowired ItemRepository itemRepository,
+    public ItemService(@Autowired ItemRepository itemRepository,
                        @Autowired ItemImgService itemImgService,
                        @Autowired ItemImgRepository itemImgRepository) {
-        this.em = em;
         this.itemRepository = itemRepository;
         this.itemImgService = itemImgService;
         this.itemImgRepository = itemImgRepository;
-    }
-
-    /* 상품 검색 로직 */
-    public List<Item> searchItem(String search) {
-        JPAQueryFactory query = new JPAQueryFactory(em);
-        QItem qItem = QItem.item;
-
-        List<Item> itemList = query.select(qItem)
-                .from(qItem)
-                .where(qItem.itemName.like("%" + search + "%"))
-                .orderBy(qItem.itemName.asc())
-                .fetch();
-
-        return itemList;
     }
 
     /* 상품 등록 서비스 로직 */
