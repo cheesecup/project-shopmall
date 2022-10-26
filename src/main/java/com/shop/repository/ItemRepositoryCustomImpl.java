@@ -86,9 +86,12 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom {
         return QItem.item.regTime.after(dateTime);
     }
 
+    private BooleanExpression itemNameLike(String searchQuery) {
+        return StringUtils.isEmpty(searchQuery) ? null : QItem.item.itemName.like("%" + searchQuery + "%");
+    }
+
     @Override
     public Page<MainItemDto> getMainItemPage(ItemSearchDto itemSearchDto, Pageable pageable) {
-
         QItem item = QItem.item;
         QItemImg itemImg = QItemImg.itemImg;
 
@@ -102,7 +105,8 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom {
                 .from(itemImg)
                 .join(itemImg.item, item)
                 .where(itemImg.repImgYn.eq("Y"))
-                .where(item.itemName.like(itemSearchDto.getSearchQuery()))
+                .where(item.itemSellStatus.eq(ItemSellStatus.SELL))
+                .where(itemNameLike(itemSearchDto.getSearchQuery()))
                 .orderBy(item.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
