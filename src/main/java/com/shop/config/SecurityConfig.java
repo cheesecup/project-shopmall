@@ -14,7 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
- * 스프링의 버전 업데이트 이후 WebSecurityConfigurerAdapter.class is deprecated
+ * 스프링의 버전 업데이트 이후 WebSecurityConfigurerAdapter is deprecated
  * 참고 URL: https://velog.io/@pjh612/Deprecated%EB%90%9C-WebSecurityConfigurerAdapter-%EC%96%B4%EB%96%BB%EA%B2%8C-%EB%8C%80%EC%B2%98%ED%95%98%EC%A7%80
  * */
 @Configuration
