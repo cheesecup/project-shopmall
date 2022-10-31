@@ -73,6 +73,12 @@ public class Item extends BaseEntity {
         this.stockNumber = restStock;
     }
 
+    /* 상품 재고를 증가시키는 메서드 */
+    public void addStock(int stockNumber) {
+        this.stockNumber += stockNumber;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
