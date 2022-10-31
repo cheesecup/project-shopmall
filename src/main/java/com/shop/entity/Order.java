@@ -45,4 +45,43 @@ public class Order extends BaseEntity {
     public static Order of(OrderStatus orderStatus, Member member) {
         return new Order(orderStatus, member);
     }
+
+    /* 주문 엔티티에 주문 상품 추가하는 메소드 */
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
+
+    /* 회원, 주문상품을 받아서 주문 엔티티 생성하는 메소드 */
+    public static Order createOrder(Member member, List<OrderItem> orderItemList) {
+        Order order = new Order();
+        order.member = member;
+        for (OrderItem orderItem : orderItemList) {
+            order.addOrderItem(orderItem);
+        }
+
+        order.orderStatus = OrderStatus.ORDER;
+        order.orderDate = LocalDateTime.now();
+
+        return order;
+    }
+
+    /* 주문 총액을 계산하는 메소드 */
+    public int getTotalPrice() {
+        int totalPrice = 0;
+        for (OrderItem orderItem : this.orderItems) {
+            totalPrice = orderItem.getTotalPrice();
+        }
+
+        return totalPrice;
+    }
+
+    /* 주문 취소 시 주문 수량을 재고에 더해주고 주문 상태를 취소로 변경하는 메서드 */
+    public void cancelOrder() {
+        this.orderStatus = OrderStatus.CANCEL;
+
+        for (OrderItem orderItem : orderItems) {
+            orderItem.cancel();
+        }
+    }
 }
