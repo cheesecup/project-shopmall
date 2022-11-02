@@ -30,6 +30,13 @@ public class Cart extends BaseEntity {
         return new Cart(member);
     }
 
+    /* 회원 정보를 담아서 장바구니 엔티티를 생성하는 메서드 */
+    public static Cart createCart(Member member) {
+        Cart cart = new Cart();
+        cart.member = member;
+        return cart;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

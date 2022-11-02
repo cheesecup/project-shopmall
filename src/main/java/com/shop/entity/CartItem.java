@@ -38,6 +38,26 @@ public class CartItem extends BaseEntity {
         return new CartItem(count, cart, item);
     }
 
+    /* 장바구니에 담을 상품 엔티티를 생성하는 메소드 */
+    public static CartItem createCartItem(Cart cart, Item item, int count) {
+        CartItem cartItem = new CartItem();
+        cartItem.cart = cart;
+        cartItem.item = item;
+        cartItem.count = count;
+
+        return cartItem;
+    }
+
+    /* 장바구니에 담을 수량을 주가시켜 주는 메소드 */
+    public void addCount(int count) {
+        this.count += count;
+    }
+
+    /* 장바구니에 담겨 있는 상품 수량 변경하는 메소드 */
+    public void updateCount(int count) {
+        this.count = count;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
